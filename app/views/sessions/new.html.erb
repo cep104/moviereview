@@ -1,0 +1,11 @@
+<p><%= flash[:error] if flash%></p>
+
+<%= form_for(:user) do |f|%>
+<%= f.label :username %>
+<%= f.text_field :username %></br>
+<%= f.label :password %>
+<%= f.password_field :password %></br>
+<%= f.submit "Login"%>
+<% end %>
+<%# were not instanciating a user were just checking if one exists
+so you dont need to @user you can just use a symbol %>
