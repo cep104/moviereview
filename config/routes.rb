@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new'
   delete '/logout' => 'sessions#destroy'
-  resources :movies
+  resources :movies do 
+    resources :reviews, only: [:new, :index]
+  end
   resources :directors
   resources :reviews
   resources :genres
