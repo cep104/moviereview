@@ -3,5 +3,7 @@
 <% @movies.each do |movie|%>
 <li><h3><%= movie.title %><h3></li>
 <p><%= movie.description %></p>
+<li><%= link_to "Write a Review", new_movie_review_path(movie.id)%></li>
 <% end %>
+
 <ul>

@@ -8,16 +8,16 @@ class MoviesController < ApplicationController
 
     def create 
     @movie = Movie.new(movie_params)
-        @movie.user_id = session[:user_id]
-        if @movie.save!
-            redirect_to @movie 
+        @movie.user_id = session[:user_id] 
+        if @movie.save #this is where validations happen
+            redirect_to @movie
         else
             render :new
         end
     end
 
     def index 
-        @movies = Movie.all
+        @movies = Movie.order_by_rating.includes(:genre, :director)
     end
 
     private 

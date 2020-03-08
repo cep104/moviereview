@@ -1,0 +1,11 @@
+<h1>All the Reviews</h1> 
+
+<% @reviews.each do |review| %>
+<ul>
+<li>
+<%= review.movie.title %>: <%= review.title %> - <%= review.stars%>
+</li>
+</ul>
+<% end %>
+
+  

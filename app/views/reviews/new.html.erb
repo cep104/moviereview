@@ -1,8 +1,15 @@
+<%= display_title %>
+
+<%= render partial: 'layouts/errors', locals: {
+object: @review} %>
+ 
+
+
 <%= form_for(@review) do |f|%>
 
 <div>
 <%= f.label :stars%>
-<%= f.text_field :stars%>
+<%= f.number_field :stars, min:0, max:10%>
 </div>
 <div>
 <%= f.label :title%>
@@ -10,9 +17,22 @@
 </div>
 <div>
 <%= f.label :content%>
-<%= f.text_field :content%>
+<%= f.text_area :content, size: "25x10"%>
 </div>
+<div>
+<% if params[:movie_id] %>
 <%= f.hidden_field :movie_id %>
+<% else %>
+<%= f.collection_select :movie_id, Movie.alpha, :id, :title_and_director, include_blank: 'Select One' %>
+<% end %>
+</div>
+<div>
+<p>Or create a new movie</p>
+<%= f.fields_for :movie  do |m| %>
+<%= m.label :name %>
+<%= m.text_field :name %>
+<% end %>
+</div>
 <%= f.submit "submit"%>
 
 <% end %>
