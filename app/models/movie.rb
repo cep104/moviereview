@@ -4,6 +4,7 @@ class Movie < ApplicationRecord
   belongs_to :director
   has_many :reviews
   has_many :users, through: :reviews #people who have reviewed it
+  has_one_attached :image 
 
   validates :description, presence: true
   validates :title , presence: true
@@ -15,20 +16,22 @@ class Movie < ApplicationRecord
   scope :order_by_rating, -> {left_joins(:reviews).group(:id).order('avg(stars) desc')}
 
   def genre_attributes=(attributes)
-    genre = Genre.find_or_create_by(attributes) if 
+    self.genre = Genre.find_or_create_by(attributes) if 
     !attributes['name'].empty?
-      
+      self.genre
     end
+
     def director_attributes=(attributes)
-      genre = Director.find_or_create_by(attributes) if 
+      self.director = Director.find_or_create_by(attributes) if 
       !attributes['name'].empty?
-        
-      end
+        self.director
+    end
 
       def not_a_duplicate 
         if Movie.find_by( title: title , director_id: director_id )
           errors.add(:title, 'has already been added for that director')
       end
+  
 
      
 
@@ -39,6 +42,4 @@ class Movie < ApplicationRecord
       "#{title} - #{director.name}"
     end
 
-
-  
 end

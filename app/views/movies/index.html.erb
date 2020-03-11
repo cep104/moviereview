@@ -1,9 +1,18 @@
+<div id="movielist">
 <h1>List of Movies</h1>
-<ul>
+
+
+
 <% @movies.each do |movie|%>
-<li><h3><%= movie.title %><h3></li>
+<div id= "mc">
+<% if movie.image.attached? %>
+<%= image_tag url_for(movie.image) %>
+<%end%>
+<h3><%= link_to movie.title, movie_path(movie) %><h3>
 <p><%= movie.description %></p>
-<li><%= link_to "Write a Review", new_movie_review_path(movie.id)%></li>
+<%= link_to "Write a Review", new_movie_review_path(movie.id)%>
+</div>
 <% end %>
 
-<ul>
+
+</div>

@@ -3,9 +3,10 @@
 <% @reviews.each do |review| %>
 <ul>
 <li>
-<%= review.movie.title %>: <%= review.title %> - <%= review.stars%>
+<%= review.movie.title %>: <%= link_to review.title, review_path(review) %> - <%= review.stars%>
 </li>
 </ul>
+<%= link_to "Delete", review, method: :delete, data: { confirm: "Really?" } %>
 <% end %>
 
   

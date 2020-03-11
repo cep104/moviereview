@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+    before_action :redirect_if_not_logged_in
+    
     def new
         if set_movie
        @review = @movie.reviews.build
@@ -31,6 +33,10 @@ class ReviewsController < ApplicationController
          set_review
     end
 
+    def destroy
+        Review.find(params[:id]).destroy
+        redirect_to reviews_url
+      end
     private 
 
     def review_params 

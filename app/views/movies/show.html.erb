@@ -1,0 +1,8 @@
+<h1><%= @movie.title%>  </h1>
+<p>Description: <%= @movie.description %></p>
+<p>Director: <%= link_to @movie.director.name, director_path(@movie) %></p>
+<p>Genre: <%= link_to @movie.genre.name, genre_path(@movie) %></p>
+<% if @movie.image.attached? %>
+  <%= image_tag url_for(@movie.image) %>
+<% end %>
+

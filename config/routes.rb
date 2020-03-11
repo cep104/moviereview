@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/signup' => 'users#new'
   delete '/logout' => 'sessions#destroy'
-
-  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
+  delete '/reviews/:id', to: 'reviews#destroy', as:'review'
+  get '/auth/:provider/callback' => 'sessions#create'
   
   resources :movies do 
     resources :reviews, only: [:new, :index]

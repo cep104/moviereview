@@ -4,13 +4,21 @@
     <title>Moviereview</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="/css/style.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 <div> 
-<%= link_to "Log Out", logout_path, method: :delete %>
-<%= link_to "Add a Movie", new_movie_path %>
+<nav>
+<ul>
+<li><%= link_to "Log Out", logout_path, method: :delete %></li>
+<li><%= link_to "Add a Movie", new_movie_path %></li>
+<li><%= link_to "All Movie", movies_path %></li>
+<li><%= link_to "Add a Review", new_review_path %></li>
+<li><%= link_to "All Reviews", reviews_path %></li>
+<li><%= link_to "All Genres", genres_path %></li>
+</ul>
+</nav>
 </div>
   <body>
     <%= yield %>

@@ -12,6 +12,10 @@ object: @movie } %>
 <%= f.label :description %>
 <%= f.text_area :description %></br>
 </div >
+<div>
+<%= f.label :image %>  
+<%= f.file_field :image %></br>
+</div>
 <p>Select a genre that already exists</p>
 <div>
 <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: 'Select One' %>

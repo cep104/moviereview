@@ -24,8 +24,6 @@ object: @review} %>
 <%= f.hidden_field :movie_id %>
 <% else %>
 <%= f.collection_select :movie_id, Movie.alpha, :id, :title_and_director, include_blank: 'Select One' %>
-<% end %>
-</div>
 <div>
 <p>Or create a new movie</p>
 <%= f.fields_for :movie  do |m| %>
@@ -33,6 +31,9 @@ object: @review} %>
 <%= m.text_field :name %>
 <% end %>
 </div>
+<% end %>
+</div>
+
 <%= f.submit "submit"%>
 
 <% end %>
